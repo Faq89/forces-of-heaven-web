@@ -363,7 +363,31 @@ main {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+}
+
+.btn-lang {
+  background: rgba(14, 23, 42, 0.85);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 6px 12px;
+  color: var(--neon-cyan);
+  font-family: var(--font-tactical);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-lang:hover {
+  border-color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.12);
+  box-shadow: 0 0 12px var(--neon-cyan-glow);
+  transform: translateY(-1px);
 }
 
 .btn-sound {
@@ -393,7 +417,7 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 20px;
+  padding: 8px 18px;
   background: linear-gradient(135deg, #0ea5e9, #0284c7);
   color: #ffffff;
   font-family: var(--font-display);
@@ -405,12 +429,54 @@ main {
   overflow: hidden;
   box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
   transition: all 0.25s var(--ease-spring);
+  white-space: nowrap;
 }
 
 .btn-nav-download:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 24px rgba(14, 165, 233, 0.7);
   background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+}
+
+/* Mobile Hamburger Nav Toggle Button */
+.btn-nav-toggle {
+  display: none;
+  background: rgba(14, 23, 42, 0.8);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  width: 38px;
+  height: 38px;
+  padding: 8px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.btn-nav-toggle:hover {
+  border-color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.1);
+}
+
+.hamburger-bar {
+  width: 100%;
+  height: 2px;
+  background: var(--neon-cyan);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.btn-nav-toggle.active .hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.btn-nav-toggle.active .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.btn-nav-toggle.active .hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ==========================================================================
@@ -1019,21 +1085,49 @@ section {
   display: flex;
   flex-direction: column;
   transition: all 0.3s var(--ease-smooth);
+  cursor: pointer;
+  outline: none;
 }
 
-.aircraft-card:hover {
+.aircraft-card:hover, .aircraft-card:focus-visible {
   transform: translateY(-6px);
   border-color: rgba(255, 183, 0, 0.6);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 183, 0, 0.15);
 }
 
 .ac-img-container {
+  position: relative;
   background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.15) 0%, rgba(5, 8, 17, 0.8) 70%);
   padding: 2.5rem 1.5rem 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ac-tap-hint {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  font-family: var(--font-tactical);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: rgba(5, 8, 17, 0.85);
+  color: var(--neon-cyan);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  padding: 2px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.aircraft-card:hover .ac-tap-hint, .unlockable-card:hover .ac-tap-hint {
+  background: var(--neon-cyan);
+  color: #050811;
+  box-shadow: 0 0 10px var(--neon-cyan-glow);
 }
 
 .ac-sprite {
@@ -1111,6 +1205,148 @@ section {
   background: linear-gradient(90deg, #0ea5e9, var(--neon-cyan));
   border-radius: 3px;
   box-shadow: 0 0 6px var(--neon-cyan-glow);
+}
+
+/* ==========================================================================
+   UNLOCKABLE AIRCRAFT BLOCK (+3 CAZAS SECRETOS)
+   ========================================================================== */
+.unlockable-aircraft-block {
+  margin-top: 4rem;
+  background: rgba(9, 14, 28, 0.85);
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), 0 0 35px rgba(255, 183, 0, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.unlockable-aircraft-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--neon-gold), transparent);
+}
+
+.unlockable-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+}
+
+.unlockable-badge {
+  font-family: var(--font-tactical);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--neon-gold);
+  background: rgba(255, 183, 0, 0.1);
+  border: 1px solid rgba(255, 183, 0, 0.35);
+  padding: 4px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 0.6rem;
+}
+
+.unlockable-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.unlockable-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 0.4rem;
+  line-height: 1.6;
+}
+
+.unlockable-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.unlockable-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+
+.unlockable-card:hover, .unlockable-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: var(--neon-gold);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 183, 0, 0.2);
+}
+
+.unl-tag {
+  font-family: var(--font-tactical);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--neon-gold);
+  margin-bottom: 1rem;
+}
+
+.unl-img-box {
+  position: relative;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 183, 0, 0.1) 0%, rgba(5, 8, 17, 0.6) 70%);
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+}
+
+.unl-sprite {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 15px rgba(255, 183, 0, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.unlockable-card:hover .unl-sprite {
+  transform: scale(1.08);
+}
+
+.unl-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.unl-pilot {
+  font-family: var(--font-tactical);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--neon-cyan);
+  margin: 0.2rem 0 0.6rem;
+}
+
+.unl-info {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 /* ==========================================================================
@@ -1431,144 +1667,7 @@ section {
 }
 
 /* ==========================================================================
-   TACTICAL BACKGROUND FLIGHT SIMULATION (Z-INDEX: 2)
-/* ==========================================================================
-   UNLOCKABLE AIRCRAFT BLOCK (+3 CAZAS SECRETOS)
-   ========================================================================== */
-.unlockable-aircraft-block {
-  margin-top: 4rem;
-  background: rgba(9, 14, 28, 0.85);
-  border: 1px solid var(--border-gold);
-  border-radius: 12px;
-  padding: 2.5rem 2rem;
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), 0 0 35px rgba(255, 183, 0, 0.12);
-  position: relative;
-  overflow: hidden;
-}
-
-.unlockable-aircraft-block::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--neon-gold), transparent);
-}
-
-.unlockable-header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 2.5rem;
-}
-
-.unlockable-badge {
-  font-family: var(--font-tactical);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--neon-gold);
-  background: rgba(255, 183, 0, 0.1);
-  border: 1px solid rgba(255, 183, 0, 0.35);
-  padding: 4px 14px;
-  border-radius: 20px;
-  display: inline-block;
-  margin-bottom: 0.6rem;
-}
-
-.unlockable-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 3vw, 1.8rem);
-  font-weight: 900;
-  color: #ffffff;
-  letter-spacing: 1px;
-}
-
-.unlockable-desc {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  margin-top: 0.4rem;
-  line-height: 1.6;
-}
-
-.unlockable-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.unlockable-card {
-  background: rgba(14, 23, 42, 0.7);
-  border: 1px solid rgba(255, 183, 0, 0.25);
-  border-radius: 8px;
-  padding: 1.75rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s ease;
-}
-
-.unlockable-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--neon-gold);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 183, 0, 0.2);
-}
-
-.unl-tag {
-  font-family: var(--font-tactical);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--neon-gold);
-  margin-bottom: 1rem;
-}
-
-.unl-img-box {
-  background: radial-gradient(circle at 50% 50%, rgba(255, 183, 0, 0.1) 0%, rgba(5, 8, 17, 0.6) 70%);
-  padding: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 6px;
-  margin-bottom: 1.25rem;
-}
-
-.unl-sprite {
-  width: 140px;
-  height: 140px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 15px rgba(255, 183, 0, 0.4));
-  transition: transform 0.3s ease;
-}
-
-.unlockable-card:hover .unl-sprite {
-  transform: scale(1.08);
-}
-
-.unl-name {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: 0.5px;
-}
-
-.unl-pilot {
-  font-family: var(--font-tactical);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--neon-cyan);
-  margin: 0.2rem 0 0.6rem;
-}
-
-.unl-info {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-/* ==========================================================================
-   PILOT DOSSIER MODAL (INTERCEPTION POPUP)
+   PILOT DOSSIER MODAL (INTERCEPTION & CARD INSPECTION POPUP)
    ========================================================================== */
 .pilot-modal {
   position: fixed;
@@ -1583,6 +1682,7 @@ section {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
+  padding: 1rem;
 }
 
 .pilot-modal.active {
@@ -1604,8 +1704,12 @@ section {
 .pilot-modal-dialog {
   position: relative;
   z-index: 2;
-  width: 90%;
+  width: 100%;
   max-width: 780px;
+  max-height: 88vh;
+  max-height: 88dvh;
+  display: flex;
+  flex-direction: column;
   background: var(--bg-surface-1);
   border: 1px solid var(--border-focus);
   border-radius: 12px;
@@ -1613,9 +1717,43 @@ section {
   overflow: hidden;
 }
 
+.pilot-modal-dialog .btn-close-modal,
+.lang-modal-dialog .btn-close-modal {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 30;
+  width: 38px;
+  height: 38px;
+  background: rgba(5, 8, 17, 0.88);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.pilot-modal-dialog .btn-close-modal:hover,
+.lang-modal-dialog .btn-close-modal:hover {
+  background: var(--neon-red);
+  border-color: var(--neon-red);
+  box-shadow: 0 0 12px var(--neon-red-glow);
+  transform: scale(1.1);
+}
+
 .pilot-modal-content {
   display: flex;
   flex-direction: row;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: 88vh;
+  max-height: 88dvh;
 }
 
 .pm-portrait-col {
@@ -1625,6 +1763,7 @@ section {
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--border-subtle);
+  position: relative;
 }
 
 .pm-img-frame {
@@ -1632,6 +1771,7 @@ section {
   width: 100%;
   height: 320px;
   overflow: hidden;
+  background: #000;
 }
 
 .pm-img {
@@ -1758,27 +1898,641 @@ section {
   letter-spacing: 1px;
 }
 
-@media (max-width: 640px) {
-  .pilot-modal-content { flex-direction: column; }
-  .pm-portrait-col { width: 100%; height: 200px; border-right: none; border-bottom: 1px solid var(--border-subtle); }
-  .pm-img-frame { height: 160px; }
-  .pm-info-col { padding: 1.25rem; }
+/* ==========================================================================
+   LANGUAGE SELECTION MODAL
+   ========================================================================== */
+.lang-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  padding: 1rem;
+}
+
+.lang-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lang-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(3, 6, 15, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.lang-modal-dialog {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 540px;
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-focus);
+  border-radius: 12px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 240, 255, 0.2);
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.lang-sub-badge {
+  font-family: var(--font-tactical);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--neon-cyan);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.lang-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.lang-modal-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.lang-options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.lang-option-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  width: 100%;
+  color: var(--text-primary);
+}
+
+.lang-option-card:hover {
+  border-color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  transform: translateX(4px);
+}
+
+.lang-option-card.active {
+  border-color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.14);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+}
+
+.lang-card-status {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.lang-check-icon {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: transparent;
+  transition: color 0.2s ease;
+}
+
+.lang-option-card.active .lang-card-status {
+  border-color: var(--neon-cyan);
+  background: var(--neon-cyan);
+}
+
+.lang-option-card.active .lang-check-icon {
+  color: #050811;
+}
+
+.lang-flag-badge {
+  font-family: var(--font-tactical);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  color: var(--neon-gold);
+  margin-bottom: 2px;
+}
+
+.lang-card-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.lang-card-meta {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.lang-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-confirm-lang {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-spring);
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);
+}
+
+.btn-confirm-lang:hover {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  box-shadow: 0 6px 25px rgba(0, 240, 255, 0.5);
+  transform: translateY(-2px);
 }
 
 /* ==========================================================================
-   RESPONSIVE QUERIES
+   MOBILE NAVIGATION DRAWER
    ========================================================================== */
-@media (max-width: 992px) {
-  .nav-links { display: none; }
-  .nav-prev { left: 10px; }
-  .nav-next { right: 10px; }
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1150;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
+.mobile-nav-drawer.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(3, 6, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.mobile-nav-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(320px, 85vw);
+  height: 100%;
+  background: rgba(9, 14, 26, 0.98);
+  border-left: 1px solid var(--border-focus);
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.8);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+.mobile-nav-drawer.active .mobile-nav-content {
+  transform: translateX(0);
+}
+
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
+}
+
+.mobile-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.mobile-logo {
+  width: 28px;
+  height: 28px;
+}
+
+.btn-close-mobile-nav {
+  background: transparent;
+  border: none;
+  color: var(--neon-cyan);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.mobile-nav-link {
+  font-family: var(--font-tactical);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-link:hover, .mobile-nav-link:active {
+  color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  border-left-color: var(--neon-cyan);
+}
+
+.mobile-nav-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btn-mobile-action {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.75rem 1rem;
+  background: rgba(14, 23, 42, 0.8);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: var(--font-tactical);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-mobile-action:hover {
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+}
+
+.btn-mobile-download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.5);
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE QUERIES
+   ========================================================================== */
+
+/* Tablets and small laptops */
+@media (max-width: 992px) {
+  .nav-links { display: none !important; }
+  .btn-nav-toggle { display: flex !important; }
+  .btn-nav-download { display: none !important; }
+  .nav-prev { left: 10px; }
+  .nav-next { right: 10px; }
+  .req-grid { grid-template-columns: 1fr; }
+}
+
+/* Mobile landscape and large phones */
 @media (max-width: 768px) {
-  .hero-section { padding: 3.5rem 1rem 3rem; }
-  .download-badge-card { padding: 1.5rem; }
-  .download-header-info { flex-direction: column; align-items: flex-start; }
-  .features-grid { grid-template-columns: 1fr; }
-  .gallery-grid { grid-template-columns: 1fr; }
-  .btn-close-modal { top: -38px; right: 8px; }
+  .hero-section {
+    padding: 3.5rem 1rem 2.5rem;
+  }
+
+  .hero-game-title {
+    font-size: clamp(2rem, 8vw, 3.2rem);
+  }
+
+  .hero-game-subtitle {
+    font-size: clamp(1rem, 3.5vw, 1.4rem);
+    letter-spacing: 4px;
+  }
+
+  .hero-tactical-tag {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    letter-spacing: 1px;
+  }
+
+  .hero-tagline {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 1.25rem auto 2rem;
+  }
+
+  .download-badge-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .download-header-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .dl-specs-row {
+    justify-content: center;
+  }
+
+  .spec-tag {
+    font-size: 0.75rem;
+  }
+
+  .btn-primary-download {
+    padding: 1rem 1.25rem;
+  }
+
+  .dl-main-text {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+
+  .dl-sub-text {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .aircraft-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .unlockable-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .steps-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .download-trust-notes {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .footer-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+/* Standard Mobile Phones (<= 640px) */
+@media (max-width: 640px) {
+  /* Pilot Dossier Modal Mobile Overhaul */
+  .pilot-modal {
+    padding: 0.5rem;
+  }
+
+  .pilot-modal-dialog {
+    max-height: 92vh;
+    max-height: 92dvh;
+    border-radius: 10px;
+  }
+
+  .pilot-modal-content {
+    flex-direction: column;
+  }
+
+  .pm-portrait-col {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .pm-img-frame {
+    height: 190px;
+  }
+
+  .pm-role-tag {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+
+  .pm-info-col {
+    padding: 1.25rem 1rem;
+  }
+
+  .pm-pilot-name {
+    font-size: 1.4rem;
+  }
+
+  .pm-callsign {
+    font-size: 0.85rem;
+  }
+
+  .pm-ship {
+    font-size: 0.8rem;
+    margin: 0.3rem 0 0.75rem;
+  }
+
+  .pm-quote {
+    font-size: 0.85rem;
+    padding-left: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .pm-stats-block {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .pm-stat-row {
+    font-size: 0.75rem;
+  }
+
+  .pm-intercept-notice {
+    font-size: 0.7rem;
+  }
+
+  /* Lightbox Modal Mobile */
+  .lightbox-dialog {
+    width: 96%;
+    padding: 0.75rem;
+  }
+
+  .lightbox-caption {
+    padding: 0.75rem 0.5rem 0;
+  }
+
+  .caption-title {
+    font-size: 0.95rem;
+  }
+
+  .caption-desc {
+    font-size: 0.8rem;
+  }
+
+  .nav-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  /* Language Modal Mobile */
+  .lang-modal-dialog {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .lang-modal-title {
+    font-size: 1.15rem;
+  }
+
+  /* Aircraft Sprites on mobile */
+  .ac-sprite {
+    width: 140px;
+    height: 140px;
+  }
+
+  .flying-aircraft {
+    width: 65px;
+    height: 65px;
+  }
+
+  .flying-aircraft.secret {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+/* Small mobile devices (<= 480px) */
+@media (max-width: 480px) {
+  .nav-brand .nav-title {
+    font-size: 0.95rem;
+  }
+
+  .nav-brand .nav-badge-pill {
+    display: none;
+  }
+
+  .btn-lang {
+    padding: 5px 8px;
+    font-size: 0.75rem;
+  }
+
+  .btn-sound {
+    padding: 5px 8px;
+  }
+
+  .btn-sound .sound-text {
+    display: none;
+  }
+
+  .download-qr-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .qr-info {
+    text-align: center;
+  }
+
+  .download-aux-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .link-display-box {
+    width: 100%;
+  }
+
+  .url-text {
+    font-size: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .sub-header {
+    font-size: 0.75rem;
+  }
 }

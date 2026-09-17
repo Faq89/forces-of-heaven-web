@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Forces of Heaven: Air Assault — Página Oficial // Descarga PC</title>
   
   <!-- SEO & OpenGraph Meta Tags -->
   <meta name="description" content="Forces of Heaven: Air Assault. Shmup arcade 2.5D de combate aeroespacial con relieve volumétrico, alabeo cinemático 3D, bosses colosales y cazas personalizables. Descarga el instalador oficial para Windows.">
-  <meta name="keywords" content="Forces of Heaven, Air Assault, Arcade, Shmup, Shoot em up, Godot 4, PC Game, Videojuego Arcade, Descarga">
+  <meta name="keywords" content="Forces of Heaven, Air Assault, Arcade, Shmup, Shoot em up, Godot 4, PC Game, Videojuego Arcade, Descarga, Download">
   <meta name="author" content="HotDogSxMachine">
   <meta property="og:title" content="Forces of Heaven: Air Assault — Descarga Oficial">
   <meta property="og:description" content="Domina los cielos en el shooter arcade 2.5D definitivo. Descarga gratuita para Windows.">
@@ -46,24 +46,72 @@
       </a>
 
       <nav class="nav-links">
-        <a href="#features" class="nav-link">SISTEMAS</a>
-        <a href="#gallery" class="nav-link">CAPTURAS</a>
-        <a href="#aircraft" class="nav-link">HANGAR</a>
-        <a href="#requirements" class="nav-link">REQUISITOS</a>
+        <a href="#features" class="nav-link" data-i18n="nav.systems">SISTEMAS</a>
+        <a href="#gallery" class="nav-link" data-i18n="nav.gallery">CAPTURAS</a>
+        <a href="#aircraft" class="nav-link" data-i18n="nav.hangar">HANGAR</a>
+        <a href="#requirements" class="nav-link" data-i18n="nav.requirements">REQUISITOS</a>
       </nav>
 
       <div class="nav-actions">
+        <!-- Language Switcher Trigger Modal Button -->
+        <button id="btnLangToggle" class="btn-lang" title="Cambiar Idioma / Switch Language" aria-label="Cambiar Idioma">
+          <span class="lang-icon">🌐</span>
+          <span id="currentLangLabel" class="lang-text">ES</span>
+        </button>
+
         <button id="btnSoundToggle" class="btn-sound" title="Sonidos Tácticos (UI FX)" aria-label="Alternar Sonidos">
           <span class="sound-icon">🔊</span>
-          <span class="sound-text">SFX: ON</span>
+          <span class="sound-text" id="soundToggleText">SFX: ON</span>
         </button>
+
         <a href="#download" class="btn-nav-download">
           <span class="btn-glow"></span>
-          <span class="btn-text">DESCARGAR</span>
+          <span class="btn-text" data-i18n="nav.download">DESCARGAR</span>
         </a>
+
+        <!-- Mobile Hamburger Toggle Button -->
+        <button id="btnNavToggle" class="btn-nav-toggle" aria-label="Menú Móvil" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true">
+    <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <div class="mobile-brand">
+          <img src="assets/brand/icon_setup.png" alt="FoH Icon" class="mobile-logo">
+          <span class="mobile-title">FORCES OF HEAVEN</span>
+        </div>
+        <button class="btn-close-mobile-nav" id="btnCloseMobileNav" aria-label="Cerrar menú">&times;</button>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="#hero" class="mobile-nav-link" data-i18n="nav.home">INICIO</a>
+        <a href="#features" class="mobile-nav-link" data-i18n="nav.systems">SISTEMAS</a>
+        <a href="#gallery" class="mobile-nav-link" data-i18n="nav.gallery">CAPTURAS</a>
+        <a href="#aircraft" class="mobile-nav-link" data-i18n="nav.hangar">HANGAR</a>
+        <a href="#requirements" class="mobile-nav-link" data-i18n="nav.requirements">REQUISITOS</a>
+      </nav>
+      <div class="mobile-nav-actions">
+        <button id="btnMobileLang" class="btn-mobile-action">
+          <span>🌐</span>
+          <span id="mobileLangLabel">IDIOMA: ESPAÑOL (ES)</span>
+        </button>
+        <button id="btnMobileSound" class="btn-mobile-action">
+          <span id="mobileSoundIcon">🔊</span>
+          <span id="mobileSoundLabel">SFX: ON</span>
+        </button>
+        <a href="#download" class="btn-mobile-download" id="mobileDownloadBtn">
+          <span data-i18n="nav.download_full">DESCARGAR INSTALADOR</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <main>
     <!-- HERO SECTION -->
@@ -72,7 +120,7 @@
         
         <div class="hero-tactical-tag">
           <span class="pulse-indicator"></span>
-          <span>SISTEMA DE DESPLIEGUE OPERACIONAL // VERSIÓN 1.0.0</span>
+          <span data-i18n="hero.tag">SISTEMA DE DESPLIEGUE OPERACIONAL // VERSIÓN 1.0.0</span>
         </div>
 
         <div class="hero-brand-block">
@@ -81,7 +129,7 @@
           <p class="hero-game-subtitle">AIR ASSAULT</p>
         </div>
 
-        <p class="hero-tagline">
+        <p class="hero-tagline" data-i18n="hero.tagline">
           El shmup arcade 2.5D de combate aeroespacial de última generación.
           Pilota cazas de asalto con física de vuelo vectorial, aniquila flotas imperiales y enfrenta fortalezas volantes clase Leviatán en un festín de acción y sintetizadores.
         </p>
@@ -98,10 +146,10 @@
               <div class="dl-meta-col">
                 <div class="dl-filename">ForcesOfHeaven_Setup.exe</div>
                 <div class="dl-specs-row">
-                  <span class="spec-tag">📦 ARCHIVO ÚNICO</span>
+                  <span class="spec-tag" data-i18n="dl.single_file">📦 ARCHIVO ÚNICO</span>
                   <span class="spec-tag">💾 466 MB</span>
                   <span class="spec-tag">🖥️ WINDOWS 10 / 11</span>
-                  <span class="spec-tag status-green">● LISTO PARA DESPLIEGUE</span>
+                  <span class="spec-tag status-green" data-i18n="dl.ready">● LISTO PARA DESPLIEGUE</span>
                 </div>
               </div>
             </div>
@@ -111,18 +159,18 @@
               <span class="btn-bg-shimmer"></span>
               <span class="dl-btn-content">
                 <span class="dl-icon-symbol">⬇</span>
-                <span class="dl-main-text">DESCARGAR INSTALADOR (MEGA)</span>
-                <span class="dl-sub-text">EJECUTABLE TODO-EN-UNO // DESPLIEGUE INMEDIATO</span>
+                <span class="dl-main-text" data-i18n="dl.btn_main">DESCARGAR INSTALADOR (MEGA)</span>
+                <span class="dl-sub-text" data-i18n="dl.btn_sub">EJECUTABLE TODO-EN-UNO // DESPLIEGUE INMEDIATO</span>
               </span>
             </a>
 
             <!-- Download Link Direct Display & Copy -->
             <div class="download-aux-bar">
-              <span class="aux-label">ENLACE MEGA:</span>
+              <span class="aux-label" data-i18n="dl.aux_label">ENLACE MEGA:</span>
               <div class="link-display-box">
                 <code id="displayDownloadUrl" class="url-text">https://mega.nz/file/zPI1gawA#y-E0MLB6tqI3Soen1IjRFvXBdAELtG8m9sJut92jWoo</code>
                 <button id="btnCopyLink" class="btn-copy" title="Copiar enlace al portapapeles">
-                  <span>COPIAR</span>
+                  <span data-i18n="dl.copy_btn">COPIAR</span>
                 </button>
               </div>
             </div>
@@ -133,15 +181,15 @@
                 <img src="assets/brand/qr_mega_download.png" alt="Código QR de Descarga Mega" class="qr-img">
               </div>
               <div class="qr-info">
-                <span class="qr-title">📱 ESCANEAR CÓDIGO QR</span>
-                <span class="qr-sub">Accede a la descarga o guarda el enlace directamente en tu dispositivo móvil</span>
+                <span class="qr-title" data-i18n="dl.qr_title">📱 ESCANEAR CÓDIGO QR</span>
+                <span class="qr-sub" data-i18n="dl.qr_sub">Accede a la descarga o guarda el enlace directamente en tu dispositivo móvil</span>
               </div>
             </div>
 
             <div class="download-trust-notes">
-              <span>🛡️ 100% Libre de Virus & Adware</span>
-              <span>⚡ Sin Descompresores Externos</span>
-              <span>🎮 Soporte para Teclado, Ratón & Mando</span>
+              <span data-i18n="dl.trust_1">🛡️ 100% Libre de Virus & Adware</span>
+              <span data-i18n="dl.trust_2">⚡ Sin Descompresores Externos</span>
+              <span data-i18n="dl.trust_3">🎮 Soporte para Teclado, Ratón & Mando</span>
             </div>
 
           </div>
@@ -154,46 +202,46 @@
     <section class="features-section" id="features">
       <div class="section-container">
         <div class="section-header">
-          <span class="sub-header">// ESPECIFICACIONES DE COMBATE</span>
-          <h2 class="section-title">TECNOLOGÍA ARCADE 2.5D</h2>
+          <span class="sub-header" data-i18n="feat.sub">// ESPECIFICACIONES DE COMBATE</span>
+          <h2 class="section-title" data-i18n="feat.title">TECNOLOGÍA ARCADE 2.5D</h2>
           <div class="header-line"></div>
         </div>
 
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon-box">📐</div>
-            <h3 class="feature-title">Alabeo Volumétrico 3D</h3>
-            <p class="feature-desc">Física y colisiones de alta precisión en 2D puro sincronizadas con proyección volumétrica 3D, relieves de carlinga y alabeo dinámico en cada maniobra evasiva.</p>
+            <h3 class="feature-title" data-i18n="feat.f1_title">Alabeo Volumétrico 3D</h3>
+            <p class="feature-desc" data-i18n="feat.f1_desc">Física y colisiones de alta precisión en 2D puro sincronizadas con proyección volumétrica 3D, relieves de carlinga y alabeo dinámico en cada maniobra evasiva.</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon-box">💥</div>
-            <h3 class="feature-title">Daño Segmentado</h3>
-            <p class="feature-desc">Cada componente cuenta: alas, blindaje, cabina y motores se desgastan y sufren averías críticas individualmente durante las refriegas aéreas.</p>
+            <h3 class="feature-title" data-i18n="feat.f2_title">Daño Segmentado</h3>
+            <p class="feature-desc" data-i18n="feat.f2_desc">Cada componente cuenta: alas, blindaje, cabina y motores se desgastan y sufren averías críticas individualmente durante las refriegas aéreas.</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon-box">👾</div>
-            <h3 class="feature-title">Bosses Clase Leviatán</h3>
-            <p class="feature-desc">Enfrenta fortalezas flotantes colosales con múltiples fases de combate, patrones balísticos de pesadilla y blindajes de plasma segmentados.</p>
+            <h3 class="feature-title" data-i18n="feat.f3_title">Bosses Clase Leviatán</h3>
+            <p class="feature-desc" data-i18n="feat.f3_desc">Enfrenta fortalezas flotantes colosales con múltiples fases de combate, patrones balísticos de pesadilla y blindajes de plasma segmentados.</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon-box">⚡</div>
-            <h3 class="feature-title">Arsenal Vectorial & Ultimates</h3>
-            <p class="feature-desc">Dispara cañones vulcan rotativos, misiles guiados y desata devastadores ataques definitivos como Chrono Surge, Mirage Bloom y Titán Barrage.</p>
+            <h3 class="feature-title" data-i18n="feat.f4_title">Arsenal Vectorial & Ultimates</h3>
+            <p class="feature-desc" data-i18n="feat.f4_desc">Dispara cañones vulcan rotativos, misiles guiados y desata devastadores ataques definitivos como Chrono Surge, Mirage Bloom y Titán Barrage.</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon-box">🎓</div>
-            <h3 class="feature-title">Academia y Minijuegos</h3>
-            <p class="feature-desc">Entrena con la Cadete Marilu en simuladores arcade retro (Galaga, Brick Breaker y Bubble Shooter) para desbloquear mejoras y suministros tácticos.</p>
+            <h3 class="feature-title" data-i18n="feat.f5_title">Academia y Minijuegos</h3>
+            <p class="feature-desc" data-i18n="feat.f5_desc">Entrena con la Cadete Marilu en simuladores arcade retro (Galaga, Brick Breaker y Bubble Shooter) para desbloquear mejoras y suministros tácticos.</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon-box">🎶</div>
-            <h3 class="feature-title">Banda Sonora Sintetizada</h3>
-            <p class="feature-desc">Banda sonora retro-futurista con sintetizadores analógicos, ritmos de alta energía y efectos de sonido arcade masterizados en alta definición.</p>
+            <h3 class="feature-title" data-i18n="feat.f6_title">Banda Sonora Sintetizada</h3>
+            <p class="feature-desc" data-i18n="feat.f6_desc">Banda sonora retro-futurista con sintetizadores analógicos, ritmos de alta energía y efectos de sonido arcade masterizados en alta definición.</p>
           </div>
         </div>
       </div>
@@ -203,118 +251,117 @@
     <section class="gallery-section" id="gallery">
       <div class="section-container">
         <div class="section-header">
-          <span class="sub-header">// REGISTROS VISUALES IN-GAME</span>
-          <h2 class="section-title">CAPTURAS Y EXPEDIENTES TÁCTICOS</h2>
-          <p class="section-desc">Haz clic sobre cualquier captura para inspeccionarla en resolución completa.</p>
+          <span class="sub-header" data-i18n="gallery.sub">// REGISTROS VISUALES IN-GAME</span>
+          <h2 class="section-title" data-i18n="gallery.title">CAPTURAS Y EXPEDIENTES TÁCTICOS</h2>
+          <p class="section-desc" data-i18n="gallery.desc">Haz clic sobre cualquier captura para inspeccionarla en resolución completa.</p>
           <div class="header-line"></div>
         </div>
 
         <div class="gallery-grid" id="galleryGrid">
           <!-- Item 1: Hangar -->
-          <div class="gallery-item" data-full="assets/screenshots/01_hangar_selection.png" data-title="Hangar de Cazas // Bahía de Inspección Táctica" data-desc="Revisión pre-vuelo de estadísticas, blindaje y equipamiento de armamento secundario antes del despegue.">
+          <div class="gallery-item" data-id="0" data-full="assets/screenshots/01_hangar_selection.png">
             <div class="img-wrapper">
               <img src="assets/screenshots/01_hangar_selection.png" alt="Hangar de Selección FoH" loading="lazy">
               <div class="item-overlay">
-                <span class="zoom-badge">🔍 AMPLIAR</span>
-                <h4 class="item-title">Hangar de Cazas</h4>
-                <span class="item-sub">Inspección Táctica 3D</span>
+                <span class="zoom-badge" data-i18n="gallery.zoom">🔍 AMPLIAR</span>
+                <h4 class="item-title" id="galTitle0">Hangar de Cazas</h4>
+                <span class="item-sub" id="galSub0">Inspección Táctica 3D</span>
               </div>
             </div>
           </div>
 
           <!-- Item 2: HUD Combat -->
-          <div class="gallery-item" data-full="assets/screenshots/02_combat_hud.png" data-title="Combate Aéreo Vectorial // HUD Táctico Militar" data-desc="Espectrograma de amenazas, indicador de acelerómetro, barra de integridad segmentada y calibración balística.">
+          <div class="gallery-item" data-id="1" data-full="assets/screenshots/02_combat_hud.png">
             <div class="img-wrapper">
               <img src="assets/screenshots/02_combat_hud.png" alt="Combate Aéreo HUD" loading="lazy">
               <div class="item-overlay">
-                <span class="zoom-badge">🔍 AMPLIAR</span>
-                <h4 class="item-title">HUD Táctico Militar</h4>
-                <span class="item-sub">Combate en Órbita</span>
+                <span class="zoom-badge" data-i18n="gallery.zoom">🔍 AMPLIAR</span>
+                <h4 class="item-title" id="galTitle1">HUD Táctico Militar</h4>
+                <span class="item-sub" id="galSub1">Combate en Órbita</span>
               </div>
             </div>
           </div>
 
           <!-- Item 3: Boss Colossus -->
-          <div class="gallery-item" data-full="assets/screenshots/03_boss_colossus.png" data-title="Duelo Titánico // Boss Colossus Clase Leviatán" data-desc="Enfrentamiento aéreo de alta intensidad con patrones de metralla pesada y núcleos de energía blindados.">
+          <div class="gallery-item" data-id="2" data-full="assets/screenshots/03_boss_colossus.png">
             <div class="img-wrapper">
               <img src="assets/screenshots/03_boss_colossus.png" alt="Boss Colossus" loading="lazy">
               <div class="item-overlay">
-                <span class="zoom-badge">🔍 AMPLIAR</span>
-                <h4 class="item-title">Boss Colossus</h4>
-                <span class="item-sub">Fortaleza Volante Clase Leviatán</span>
+                <span class="zoom-badge" data-i18n="gallery.zoom">🔍 AMPLIAR</span>
+                <h4 class="item-title" id="galTitle2">Boss Colossus</h4>
+                <span class="item-sub" id="galSub2">Fortaleza Volante Clase Leviatán</span>
               </div>
             </div>
           </div>
 
-
-          <!-- Item 5: Marilu Academy -->
-          <div class="gallery-item" data-full="assets/screenshots/05_marilu_academy.png" data-title="Academia de Combate // Sesión con Cadete Marilu" data-desc="Sistema de rangos de piloto, recompensas operacionales y evaluaciones de desempeño balístico.">
+          <!-- Item 4: Marilu Academy -->
+          <div class="gallery-item" data-id="3" data-full="assets/screenshots/05_marilu_academy.png">
             <div class="img-wrapper">
               <img src="assets/screenshots/05_marilu_academy.png" alt="Academia de Marilu" loading="lazy">
               <div class="item-overlay">
-                <span class="zoom-badge">🔍 AMPLIAR</span>
-                <h4 class="item-title">Academia de Vuelo</h4>
-                <span class="item-sub">Evaluación y Rango Operacional</span>
+                <span class="zoom-badge" data-i18n="gallery.zoom">🔍 AMPLIAR</span>
+                <h4 class="item-title" id="galTitle3">Academia de Vuelo</h4>
+                <span class="item-sub" id="galSub3">Evaluación y Rango Operacional</span>
               </div>
             </div>
           </div>
 
-          <!-- Item 6: Marilu Minigame -->
-          <div class="gallery-item" data-full="assets/screenshots/06_marilu_minigame.png" data-title="Simulador Arcade Retro // Entrenamiento de Reflejos" data-desc="Minijuegos arcade clásicos integrados para entrenar agilidad y desbloquear créditos de hangares.">
+          <!-- Item 5: Marilu Minigame -->
+          <div class="gallery-item" data-id="4" data-full="assets/screenshots/06_marilu_minigame.png">
             <div class="img-wrapper">
               <img src="assets/screenshots/06_marilu_minigame.png" alt="Minijuego Arcade Retro" loading="lazy">
               <div class="item-overlay">
-                <span class="zoom-badge">🔍 AMPLIAR</span>
-                <h4 class="item-title">Entrenamiento Retro</h4>
-                <span class="item-sub">Simulador de Reflejos y Puntería</span>
+                <span class="zoom-badge" data-i18n="gallery.zoom">🔍 AMPLIAR</span>
+                <h4 class="item-title" id="galTitle4">Entrenamiento Retro</h4>
+                <span class="item-sub" id="galSub4">Simulador de Reflejos y Puntería</span>
               </div>
             </div>
           </div>
 
-          <!-- Item 7: Dreadnought Blueprint -->
-          <div class="gallery-item" data-full="assets/screenshots/07_dreadnought_blueprint.jpg" data-title="Plano Holográfico // Dreadnought Abyssal Sovereign" data-desc="Esquema estructural del buque insignia del Imperio: blindaje cerámico y doble torreta de plasma orbital.">
+          <!-- Item 6: Dreadnought Blueprint -->
+          <div class="gallery-item" data-id="5" data-full="assets/screenshots/07_dreadnought_blueprint.jpg">
             <div class="img-wrapper">
               <img src="assets/screenshots/07_dreadnought_blueprint.jpg" alt="Plano Dreadnought" loading="lazy">
               <div class="item-overlay">
-                <span class="zoom-badge">🔍 AMPLIAR</span>
-                <h4 class="item-title">Plano Dreadnought</h4>
-                <span class="item-sub">Buque Insignia Imperial</span>
+                <span class="zoom-badge" data-i18n="gallery.zoom">🔍 AMPLIAR</span>
+                <h4 class="item-title" id="galTitle5">Plano Dreadnought</h4>
+                <span class="item-sub" id="galSub5">Buque Insignia Imperial</span>
               </div>
             </div>
           </div>
 
-          <!-- Item 8: Nebula Dogfight -->
-          <div class="gallery-item" data-full="assets/screenshots/08_nebula_dogfight.jpg" data-title="Sector Coronal // Dogfight en la Nebulosa" data-desc="El artillero Piro surcando nubes ionizadas en intercepción de escuadrones de cazas espaciales.">
+          <!-- Item 7: Nebula Dogfight -->
+          <div class="gallery-item" data-id="6" data-full="assets/screenshots/08_nebula_dogfight.jpg">
             <div class="img-wrapper">
               <img src="assets/screenshots/08_nebula_dogfight.jpg" alt="Dogfight Nebulosa" loading="lazy">
               <div class="item-overlay">
-                <span class="zoom-badge">🔍 AMPLIAR</span>
-                <h4 class="item-title">Dogfight Coronal</h4>
-                <span class="item-sub">Phantom Gunship en Acción</span>
+                <span class="zoom-badge" data-i18n="gallery.zoom">🔍 AMPLIAR</span>
+                <h4 class="item-title" id="galTitle6">Dogfight Coronal</h4>
+                <span class="item-sub" id="galSub6">Phantom Gunship en Acción</span>
               </div>
             </div>
           </div>
 
-          <!-- Item 9: Apex Squad Camp -->
-          <div class="gallery-item" data-full="assets/screenshots/09_apex_squadron.jpg" data-title="Escuadrón Apex // Briefing en Base de Selva" data-desc="Sick, Tonio y Chadmanzio preparando la estrategia de incursión nocturna en el sector rebelde.">
+          <!-- Item 8: Apex Squad Camp -->
+          <div class="gallery-item" data-id="7" data-full="assets/screenshots/09_apex_squadron.jpg">
             <div class="img-wrapper">
               <img src="assets/screenshots/09_apex_squadron.jpg" alt="Escuadrón Apex" loading="lazy">
               <div class="item-overlay">
-                <span class="zoom-badge">🔍 AMPLIAR</span>
-                <h4 class="item-title">Escuadrón Apex</h4>
-                <span class="item-sub">Briefing y Moral de Combate</span>
+                <span class="zoom-badge" data-i18n="gallery.zoom">🔍 AMPLIAR</span>
+                <h4 class="item-title" id="galTitle7">Escuadrón Apex</h4>
+                <span class="item-sub" id="galSub7">Briefing y Moral de Combate</span>
               </div>
             </div>
           </div>
 
-          <!-- Item 10: Marilu Salute -->
-          <div class="gallery-item" data-full="assets/screenshots/10_marilu_biplane.jpg" data-title="Vanguardia Aérea // Cadete Marilu en Formación" data-desc="Rindiendo honores en pista antes del despegue para la defensa metropolitana de la Coalición.">
+          <!-- Item 9: Marilu Salute -->
+          <div class="gallery-item" data-id="8" data-full="assets/screenshots/10_marilu_biplane.jpg">
             <div class="img-wrapper">
               <img src="assets/screenshots/10_marilu_biplane.jpg" alt="Marilu Biplane Salute" loading="lazy">
               <div class="item-overlay">
-                <span class="zoom-badge">🔍 AMPLIAR</span>
-                <h4 class="item-title">Vanguardia Aérea</h4>
-                <span class="item-sub">Defensa Metropolitana</span>
+                <span class="zoom-badge" data-i18n="gallery.zoom">🔍 AMPLIAR</span>
+                <h4 class="item-title" id="galTitle8">Vanguardia Aérea</h4>
+                <span class="item-sub" id="galSub8">Defensa Metropolitana</span>
               </div>
             </div>
           </div>
@@ -326,77 +373,81 @@
     <section class="aircraft-section" id="aircraft">
       <div class="section-container">
         <div class="section-header">
-          <span class="sub-header">// ESCUADRILLA OPERACIONAL</span>
-          <h2 class="section-title">FLOTA DE CAZAS DISPONIBLES</h2>
-          <p class="section-desc">Cada aeronave posee atributos físicos y maniobrabilidad aeroespacial calibrados para diferentes doctrinas de combate.</p>
+          <span class="sub-header" data-i18n="aircraft.sub">// ESCUADRILLA OPERACIONAL</span>
+          <h2 class="section-title" data-i18n="aircraft.title">FLOTA DE CAZAS DISPONIBLES</h2>
+          <p class="section-desc" data-i18n="aircraft.desc">Cada aeronave posee atributos físicos y maniobrabilidad calibrados para diferentes doctrinas de combate. Haz clic o toca cualquier caza para ver su expediente táctico.</p>
           <div class="header-line"></div>
         </div>
 
         <div class="aircraft-grid">
           <!-- Valkyrie Interceptor -->
-          <div class="aircraft-card">
+          <div class="aircraft-card" data-aircraft="valkyrie" tabindex="0" role="button" aria-label="Inspeccionar Valkyrie Interceptor">
             <div class="ac-img-container">
               <img src="assets/aircraft/valkyrie.png" alt="Valkyrie Interceptor" class="ac-sprite">
+              <span class="ac-tap-hint" data-i18n="aircraft.inspect_hint">🔍 VER EXPEDIENTE</span>
             </div>
             <div class="ac-info">
-              <div class="ac-type">VF-02 // INTERCEPTOR LIGERO</div>
+              <div class="ac-type" data-i18n="ac.valkyrie_type">VF-02 // INTERCEPTOR LIGERO</div>
               <h3 class="ac-name">VALKYRIE INTERCEPTOR</h3>
-              <p class="ac-desc">Ágil y con velocidad punta extrema. Ideal para esquivar ráfagas densas y flanquear formaciones enemigas.</p>
+              <p class="ac-desc" data-i18n="ac.valkyrie_desc">Ágil y con velocidad punta extrema. Ideal para esquivar ráfagas densas y flanquear formaciones enemigas.</p>
               <div class="ac-stats">
-                <div class="stat-row"><span>VELOCIDAD:</span><div class="stat-bar"><div class="bar-fill" style="width: 95%;"></div></div></div>
-                <div class="stat-row"><span>POTENCIA:</span><div class="stat-bar"><div class="bar-fill" style="width: 75%;"></div></div></div>
-                <div class="stat-row"><span>BLINDAJE:</span><div class="stat-bar"><div class="bar-fill" style="width: 60%;"></div></div></div>
+                <div class="stat-row"><span data-i18n="ac.stat_speed">VELOCIDAD:</span><div class="stat-bar"><div class="bar-fill" style="width: 95%;"></div></div></div>
+                <div class="stat-row"><span data-i18n="ac.stat_power">POTENCIA:</span><div class="stat-bar"><div class="bar-fill" style="width: 75%;"></div></div></div>
+                <div class="stat-row"><span data-i18n="ac.stat_armor">BLINDAJE:</span><div class="stat-bar"><div class="bar-fill" style="width: 60%;"></div></div></div>
               </div>
             </div>
           </div>
 
           <!-- Corsair Striker -->
-          <div class="aircraft-card">
+          <div class="aircraft-card" data-aircraft="corsair" tabindex="0" role="button" aria-label="Inspeccionar Corsair Striker">
             <div class="ac-img-container">
               <img src="assets/aircraft/corsair.png" alt="Corsair Striker" class="ac-sprite">
+              <span class="ac-tap-hint" data-i18n="aircraft.inspect_hint">🔍 VER EXPEDIENTE</span>
             </div>
             <div class="ac-info">
-              <div class="ac-type">CR-03 // CAZA HÍBRIDO POLIVALENTE</div>
+              <div class="ac-type" data-i18n="ac.corsair_type">CR-03 // CAZA HÍBRIDO POLIVALENTE</div>
               <h3 class="ac-name">CORSAIR STRIKER</h3>
-              <p class="ac-desc">El equilibrio táctico definitivo entre cadencia de fuego, resistencia estructural y aceleración.</p>
+              <p class="ac-desc" data-i18n="ac.corsair_desc">El equilibrio táctico definitivo entre cadencia de fuego, resistencia estructural y aceleración.</p>
               <div class="ac-stats">
-                <div class="stat-row"><span>VELOCIDAD:</span><div class="stat-bar"><div class="bar-fill" style="width: 80%;"></div></div></div>
-                <div class="stat-row"><span>POTENCIA:</span><div class="stat-bar"><div class="bar-fill" style="width: 85%;"></div></div></div>
-                <div class="stat-row"><span>BLINDAJE:</span><div class="stat-bar"><div class="bar-fill" style="width: 75%;"></div></div></div>
+                <div class="stat-row"><span data-i18n="ac.stat_speed">VELOCIDAD:</span><div class="stat-bar"><div class="bar-fill" style="width: 80%;"></div></div></div>
+                <div class="stat-row"><span data-i18n="ac.stat_power">POTENCIA:</span><div class="stat-bar"><div class="bar-fill" style="width: 85%;"></div></div></div>
+                <div class="stat-row"><span data-i18n="ac.stat_armor">BLINDAJE:</span><div class="stat-bar"><div class="bar-fill" style="width: 75%;"></div></div></div>
               </div>
             </div>
           </div>
 
           <!-- Shadowcase Newtype -->
-          <div class="aircraft-card">
+          <div class="aircraft-card" data-aircraft="shadowcase" tabindex="0" role="button" aria-label="Inspeccionar Shadowcase Newtype">
             <div class="ac-img-container">
               <img src="assets/aircraft/shadowcase.png" alt="Shadowcase Newtype" class="ac-sprite">
+              <span class="ac-tap-hint" data-i18n="aircraft.inspect_hint">🔍 VER EXPEDIENTE</span>
             </div>
             <div class="ac-info">
-              <div class="ac-type">APX-01 // DREADNOUGHT PESADO</div>
+              <div class="ac-type" data-i18n="ac.shadowcase_type">APX-01 // DREADNOUGHT PESADO</div>
               <h3 class="ac-name">SHADOWCASE NEWTYPE</h3>
-              <p class="ac-desc">Fuselaje reforzado de titanio y cañones cinéticos pesados. Alta resistencia al impacto con cadencia moderada pero letal.</p>
+              <p class="ac-desc" data-i18n="ac.shadowcase_desc">Fuselaje reforzado de titanio y cañones cinéticos pesados. Alta resistencia al impacto con cadencia moderada pero letal.</p>
               <div class="ac-stats">
-                <div class="stat-row"><span>VELOCIDAD:</span><div class="stat-bar"><div class="bar-fill" style="width: 70%;"></div></div></div>
-                <div class="stat-row"><span>POTENCIA:</span><div class="stat-bar"><div class="bar-fill" style="width: 95%;"></div></div></div>
-                <div class="stat-row"><span>BLINDAJE:</span><div class="stat-bar"><div class="bar-fill" style="width: 95%;"></div></div></div>
+                <div class="stat-row"><span data-i18n="ac.stat_speed">VELOCIDAD:</span><div class="stat-bar"><div class="bar-fill" style="width: 70%;"></div></div></div>
+                <div class="stat-row"><span data-i18n="ac.stat_power">POTENCIA:</span><div class="stat-bar"><div class="bar-fill" style="width: 95%;"></div></div></div>
+                <div class="stat-row"><span data-i18n="ac.stat_armor">BLINDAJE:</span><div class="stat-bar"><div class="bar-fill" style="width: 95%;"></div></div></div>
               </div>
             </div>
           </div>
 
           <!-- Phantom Gunship -->
-          <div class="aircraft-card">
+          <div class="aircraft-card" data-aircraft="phantom" tabindex="0" role="button" aria-label="Inspeccionar Phantom Gunship">
             <div class="ac-img-container">
               <img src="assets/aircraft/phantom.png" alt="Phantom Gunship" class="ac-sprite">
+              <span class="ac-tap-hint" data-i18n="aircraft.inspect_hint">🔍 VER EXPEDIENTE</span>
             </div>
             <div class="ac-info">
-              <div class="ac-type">PH-04 // CAÑONERO DE ASALTO</div>
+              <div class="ac-type" data-i18n="ac.phantom_type">PH-04 // CAÑONERO DE ASALTO</div>
               <h3 class="ac-name">PHANTOM GUNSHIP</h3>
-              <p class="ac-desc">Batería de plasma devastadora y proyectiles de penetración diseñados para demoler armaduras pesadas.</p>
+              <p class="ac-desc" data-i18n="ac.phantom_desc">Batería de plasma devastadora y proyectiles de penetración diseñados para demoler armaduras pesadas.</p>
               <div class="ac-stats">
-                <div class="stat-row"><span>VELOCIDAD:</span><div class="stat-bar"><div class="bar-fill" style="width: 70%;"></div></div></div>
-                <div class="stat-row"><span>POTENCIA:</span><div class="stat-bar"><div class="bar-fill" style="width: 95%;"></div></div></div>
-                <div class="stat-row"><span>BLINDAJE:</span><div class="stat-bar"><div class="bar-fill" style="width: 80%;"></div></div></div>
+                <div class="stat-row"><span data-i18n="ac.stat_speed">VELOCIDAD:</span><div class="stat-bar"><div class="bar-fill" style="width: 70%;"></div></div></div>
+                <div class="stat-row"><span data-i18n="ac.stat_power">POTENCIA:</span><div class="stat-bar"><div class="bar-fill" style="width: 95%;"></div></div></div>
+                <div class="stat-row"><span data-i18n="ac.stat_armor">BLINDAJE:</span><div class="stat-bar"><div class="bar-fill" style="width: 80%;"></div></div></div>
               </div>
             </div>
           </div>
@@ -405,43 +456,46 @@
         <!-- Unlockable Aircraft Teaser Block (+3 Cazas Secretos) -->
         <div class="unlockable-aircraft-block">
           <div class="unlockable-header">
-            <span class="unlockable-badge">🔒 CLASIFICADO // PROTOCOLO DE DESPLIEGUE</span>
-            <h3 class="unlockable-title">+3 AERONAVES DE ÉLITE DESBLOQUEABLES</h3>
-            <p class="unlockable-desc">Cumple objetivos de campaña, entrena en la academia y supera misiones secretas para obtener los cazas más legendarios de la Coalición.</p>
+            <span class="unlockable-badge" data-i18n="unlock.badge">🔒 CLASIFICADO // PROTOCOLO DE DESPLIEGUE</span>
+            <h3 class="unlockable-title" data-i18n="unlock.title">+3 AERONAVES DE ÉLITE DESBLOQUEABLES</h3>
+            <p class="unlockable-desc" data-i18n="unlock.desc">Cumple objetivos de campaña, entrena en la academia y supera misiones secretas para obtener los cazas más legendarios de la Coalición.</p>
           </div>
 
           <div class="unlockable-grid">
             <!-- Unlockable 1: MR-07 Aero Mirage -->
-            <div class="unlockable-card">
-              <div class="unl-tag">DESBLOQUEO: ACADEMIA DE VUELO</div>
+            <div class="unlockable-card" data-aircraft="marilu_biplane" tabindex="0" role="button" aria-label="Inspeccionar MR-07 Aero Mirage">
+              <div class="unl-tag" data-i18n="unlock.c1_tag">DESBLOQUEO: ACADEMIA DE VUELO</div>
               <div class="unl-img-box">
                 <img src="assets/aircraft/marilu_biplane.png" alt="MR-07 Aero Mirage" class="unl-sprite">
+                <span class="ac-tap-hint" data-i18n="aircraft.inspect_hint">🔍 VER EXPEDIENTE</span>
               </div>
               <h4 class="unl-name">MR-07 AERO MIRAGE</h4>
-              <span class="unl-pilot">PILOTO: CADETE MARILU</span>
-              <p class="unl-info">Célula biplano de aerodinámica clásica con hiper-maniobrabilidad vectorial. Capaz de girar en ángulos imposibles y esquivar cortinas balísticas densas.</p>
+              <span class="unl-pilot" data-i18n="unlock.c1_pilot">PILOTO: CADETE MARILU</span>
+              <p class="unl-info" data-i18n="unlock.c1_desc">Célula biplano de aerodinámica clásica con hiper-maniobrabilidad vectorial. Capaz de girar en ángulos imposibles y esquivar cortinas balísticas densas.</p>
             </div>
 
             <!-- Unlockable 2: General Dan Giga B200 -->
-            <div class="unlockable-card">
-              <div class="unl-tag">DESBLOQUEO: CAMPAÑA SUPREMA</div>
+            <div class="unlockable-card" data-aircraft="giga_b2000" tabindex="0" role="button" aria-label="Inspeccionar Giga B200">
+              <div class="unl-tag" data-i18n="unlock.c2_tag">DESBLOQUEO: CAMPAÑA SUPREMA</div>
               <div class="unl-img-box">
                 <img src="assets/aircraft/giga_b2000.png" alt="GB-06 Giga B200" class="unl-sprite">
+                <span class="ac-tap-hint" data-i18n="aircraft.inspect_hint">🔍 VER EXPEDIENTE</span>
               </div>
               <h4 class="unl-name">GIGA B200</h4>
-              <span class="unl-pilot">PILOTO: GENERAL DAN</span>
-              <p class="unl-info">GB-06 Acorazado estratégico de la Coalición Terrestre. Blindaje hiperdenso multicapa y cañón de colapso gravitatorio de materia oscura.</p>
+              <span class="unl-pilot" data-i18n="unlock.c2_pilot">PILOTO: GENERAL DAN</span>
+              <p class="unl-info" data-i18n="unlock.c2_desc">GB-06 Acorazado estratégico de la Coalición Terrestre. Blindaje hiperdenso multicapa y cañón de colapso gravitatorio de materia oscura.</p>
             </div>
 
             <!-- Unlockable 3: Solaris Seraph -->
-            <div class="unlockable-card">
-              <div class="unl-tag">DESBLOQUEO: OPERACIONES SECRETAS</div>
+            <div class="unlockable-card" data-aircraft="gordalf" tabindex="0" role="button" aria-label="Inspeccionar Solaris Seraph">
+              <div class="unl-tag" data-i18n="unlock.c3_tag">DESBLOQUEO: OPERACIONES SECRETAS</div>
               <div class="unl-img-box">
                 <img src="assets/aircraft/gordalf.png" alt="SO-05 Solaris Seraph" class="unl-sprite">
+                <span class="ac-tap-hint" data-i18n="aircraft.inspect_hint">🔍 VER EXPEDIENTE</span>
               </div>
               <h4 class="unl-name">SOLARIS SERAPH</h4>
-              <span class="unl-pilot">PILOTO: AGENTE GORDALF</span>
-              <p class="unl-info">SO-05 Caza sagrado de sigilo y reconocimiento táctico con blindaje compuesto, núcleo solar de fisión celestial y guerra electrónica.</p>
+              <span class="unl-pilot" data-i18n="unlock.c3_pilot">PILOTO: AGENTE GORDALF</span>
+              <p class="unl-info" data-i18n="unlock.c3_desc">SO-05 Caza sagrado de sigilo y reconocimiento táctico con blindaje compuesto, núcleo solar de fisión celestial y guerra electrónica.</p>
             </div>
           </div>
         </div>
@@ -453,55 +507,55 @@
     <section class="requirements-section" id="requirements">
       <div class="section-container">
         <div class="section-header">
-          <span class="sub-header">// PARÁMETROS TÉCNICOS</span>
-          <h2 class="section-title">REQUISITOS DEL SISTEMA</h2>
+          <span class="sub-header" data-i18n="req.sub">// PARÁMETROS TÉCNICOS</span>
+          <h2 class="section-title" data-i18n="req.title">REQUISITOS DEL SISTEMA</h2>
           <div class="header-line"></div>
         </div>
 
         <div class="req-grid">
           <div class="req-box">
-            <h3 class="req-title">ESPECIFICACIONES MÍNIMAS</h3>
+            <h3 class="req-title" data-i18n="req.min_title">ESPECIFICACIONES MÍNIMAS</h3>
             <ul class="req-list">
-              <li><strong>Sistema Operativo:</strong> Windows 10 / 11 (64-bit)</li>
-              <li><strong>Procesador:</strong> Intel Core i3 2.0 GHz o equivalente AMD</li>
-              <li><strong>Memoria RAM:</strong> 4 GB RAM</li>
-              <li><strong>Gráficos:</strong> Gráficos integrados compatibles con OpenGL 3.3 / Vulkan</li>
-              <li><strong>Almacenamiento:</strong> 1.5 GB de espacio libre en disco</li>
-              <li><strong>Entrada:</strong> Teclado, Ratón o Mando</li>
+              <li><strong data-i18n="req.lbl_os">Sistema Operativo:</strong> Windows 10 / 11 (64-bit)</li>
+              <li><strong data-i18n="req.lbl_cpu">Procesador:</strong> Intel Core i3 2.0 GHz / AMD Ryzen 3</li>
+              <li><strong data-i18n="req.lbl_ram">Memoria RAM:</strong> 4 GB RAM</li>
+              <li><strong data-i18n="req.lbl_gpu">Gráficos:</strong> Gráficos integrados compatibles OpenGL 3.3 / Vulkan</li>
+              <li><strong data-i18n="req.lbl_hdd">Almacenamiento:</strong> 1.5 GB de espacio libre</li>
+              <li><strong data-i18n="req.lbl_input">Entrada:</strong> <span data-i18n="req.val_input">Teclado, Ratón o Mando</span></li>
             </ul>
           </div>
 
           <div class="req-box highlight">
-            <h3 class="req-title">ESPECIFICACIONES RECOMENDADAS</h3>
+            <h3 class="req-title" data-i18n="req.rec_title">ESPECIFICACIONES RECOMENDADAS</h3>
             <ul class="req-list">
-              <li><strong>Sistema Operativo:</strong> Windows 10 / 11 (64-bit)</li>
-              <li><strong>Procesador:</strong> Intel Core i5 / AMD Ryzen 5 o superior</li>
-              <li><strong>Memoria RAM:</strong> 8 GB RAM</li>
-              <li><strong>Gráficos:</strong> NVIDIA GTX 1050 / AMD RX 560 o superior</li>
-              <li><strong>Almacenamiento:</strong> 1.5 GB en SSD</li>
-              <li><strong>Monitor:</strong> Resolución 1920x1080 @ 60Hz+</li>
+              <li><strong data-i18n="req.lbl_os">Sistema Operativo:</strong> Windows 10 / 11 (64-bit)</li>
+              <li><strong data-i18n="req.lbl_cpu">Procesador:</strong> Intel Core i5 / AMD Ryzen 5 o superior</li>
+              <li><strong data-i18n="req.lbl_ram">Memoria RAM:</strong> 8 GB RAM</li>
+              <li><strong data-i18n="req.lbl_gpu">Gráficos:</strong> NVIDIA GTX 1050 / AMD RX 560 o superior</li>
+              <li><strong data-i18n="req.lbl_hdd">Almacenamiento:</strong> 1.5 GB en SSD</li>
+              <li><strong data-i18n="req.lbl_display">Monitor:</strong> 1920x1080 @ 60Hz+</li>
             </ul>
           </div>
         </div>
 
         <!-- How to Install in 3 Steps -->
         <div class="install-guide-block">
-          <h3 class="guide-title">DESPLIEGUE EN 3 PASOS</h3>
+          <h3 class="guide-title" data-i18n="steps.title">DESPLIEGUE EN 3 PASOS</h3>
           <div class="steps-row">
             <div class="step-card">
               <div class="step-num">01</div>
-              <h4>Descarga el Instalador</h4>
-              <p>Obtén el ejecutable único <code>ForcesOfHeaven_Setup.exe</code> (466 MB) sin archivos adicionales.</p>
+              <h4 data-i18n="steps.s1_title">Descarga el Instalador</h4>
+              <p data-i18n="steps.s1_desc">Obtén el ejecutable único <code>ForcesOfHeaven_Setup.exe</code> (466 MB) sin archivos adicionales.</p>
             </div>
             <div class="step-card">
               <div class="step-num">02</div>
-              <h4>Ejecuta la Instalación</h4>
-              <p>Haz doble clic sobre el archivo. El instalador arcade extraerá y preparará el juego con un solo clic.</p>
+              <h4 data-i18n="steps.s2_title">Ejecuta la Instalación</h4>
+              <p data-i18n="steps.s2_desc">Haz doble clic sobre el archivo. El instalador arcade extraerá y preparará el juego con un solo clic.</p>
             </div>
             <div class="step-card">
               <div class="step-num">03</div>
-              <h4>¡Despega al Combate!</h4>
-              <p>Inicia el juego desde el instalador o mediante el acceso directo en tu escritorio. ¡Buena suerte, piloto!</p>
+              <h4 data-i18n="steps.s3_title">¡Despega al Combate!</h4>
+              <p data-i18n="steps.s3_desc">Inicia el juego desde el instalador o mediante el acceso directo en tu escritorio. ¡Buena suerte, piloto!</p>
             </div>
           </div>
         </div>
@@ -531,7 +585,7 @@
     </div>
   </div>
 
-  <!-- PILOT DOSSIER MODAL (INTERCEPTION POPUP) -->
+  <!-- PILOT DOSSIER MODAL (INTERCEPTION & CARD INSPECTION POPUP) -->
   <div id="pilotModal" class="pilot-modal" aria-hidden="true" role="dialog">
     <div class="pilot-modal-backdrop" id="pilotModalBackdrop"></div>
     <div class="pilot-modal-dialog">
@@ -548,15 +602,56 @@
           <div class="pm-classified-badge" id="pmClassifiedBadge">REGISTRO MILITAR // AERONAVE INTERCEPTADA</div>
           <h3 class="pm-pilot-name" id="pmPilotName">NOMBRE PILOTO</h3>
           <div class="pm-callsign" id="pmCallsign">CALLSIGN MILITAR</div>
-          <div class="pm-ship" id="pmShip">NAVE ASIGNADA</div>
+          <div class="pm-ship" id="pmShip">NAVE ASIGNADA: -</div>
           <blockquote class="pm-quote" id="pmQuote">"Cita de combate..."</blockquote>
           <div class="pm-stats-block" id="pmStatsBlock">
             <!-- Dynamic stats inserted here -->
           </div>
-          <div class="pm-intercept-notice">
+          <div class="pm-intercept-notice" id="pmNotice">
             <span>🎯 TELEMETRÍA DE VUELO EN TIEMPO REAL // ESCUADRÓN APEX</span>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANGUAGE SELECTION MODAL -->
+  <div id="langModal" class="lang-modal" aria-hidden="true" role="dialog">
+    <div class="lang-modal-backdrop" id="langModalBackdrop"></div>
+    <div class="lang-modal-dialog">
+      <button class="btn-close-modal" id="btnCloseLangModal" aria-label="Cerrar">&times;</button>
+      <div class="lang-modal-header">
+        <span class="lang-sub-badge" data-i18n="lang.sub">// SISTEMA DE COMUNICACIONES</span>
+        <h3 class="lang-modal-title" data-i18n="lang.title">SELECCIONAR IDIOMA / SELECT LANGUAGE</h3>
+        <p class="lang-modal-desc" data-i18n="lang.desc">Elige la frecuencia de transmisión operacional para la interfaz y expedientes tácticos.</p>
+      </div>
+
+      <div class="lang-options-grid">
+        <button class="lang-option-card active" data-lang="es" id="langOptEs">
+          <div class="lang-card-status">
+            <span class="lang-check-icon">✓</span>
+          </div>
+          <div class="lang-card-content">
+            <div class="lang-flag-badge">🇪🇸 ESPAÑOL</div>
+            <div class="lang-card-name" data-i18n="lang.es_name">Español (Latinoamérica / España)</div>
+            <div class="lang-card-meta" data-i18n="lang.es_meta">Mando Central de la Coalición Terrestre</div>
+          </div>
+        </button>
+
+        <button class="lang-option-card" data-lang="en" id="langOptEn">
+          <div class="lang-card-status">
+            <span class="lang-check-icon">✓</span>
+          </div>
+          <div class="lang-card-content">
+            <div class="lang-flag-badge">🇺🇸 ENGLISH</div>
+            <div class="lang-card-name" data-i18n="lang.en_name">English (Global / International)</div>
+            <div class="lang-card-meta" data-i18n="lang.en_meta">Global Allied Command & Orbit Defense</div>
+          </div>
+        </button>
+      </div>
+
+      <div class="lang-modal-footer">
+        <button id="btnConfirmLang" class="btn-confirm-lang" data-i18n="lang.confirm">CONFIRMAR // CONFIRM</button>
       </div>
     </div>
   </div>
@@ -568,15 +663,16 @@
         <img src="assets/brand/icon_setup.png" alt="FoH Logo Mini" class="footer-icon">
         <div class="footer-texts">
           <div class="f-title">FORCES OF HEAVEN: AIR ASSAULT</div>
-          <div class="f-copy">&copy; 2026 HotDogSxMachine. Todos los derechos reservados.</div>
+          <div class="f-copy" data-i18n="footer.copy">&copy; 2026 HotDogSxMachine. Todos los derechos reservados.</div>
         </div>
       </div>
 
       <div class="footer-links">
-        <a href="#hero">Inicio</a>
-        <a href="#features">Características</a>
-        <a href="#gallery">Capturas</a>
-        <a href="#download">Descargar</a>
+        <a href="#hero" data-i18n="nav.home">Inicio</a>
+        <a href="#features" data-i18n="nav.systems">Características</a>
+        <a href="#gallery" data-i18n="nav.gallery">Capturas</a>
+        <a href="#aircraft" data-i18n="nav.hangar">Hangar</a>
+        <a href="#download" data-i18n="nav.download">Descargar</a>
       </div>
     </div>
   </footer>
