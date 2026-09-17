@@ -1,0 +1,4 @@
+# Ignore Godot import files and OS metadata
+*.import
+.DS_Store
+Thumbs.db
