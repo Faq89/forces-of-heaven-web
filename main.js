@@ -56,6 +56,16 @@ const TRANSLATIONS = {
     "dl.trust_2": "⚡ Sin Descompresores Externos",
     "dl.trust_3": "🎮 Soporte para Teclado, Ratón & Mando",
 
+    "nav.support": "APOYAR",
+    "support.badge": "// SUMINISTROS & APOYO AL DESARROLLO",
+    "support.title": "CONTRIBUIR A LA MISIÓN",
+    "support.desc": "Forces of Heaven es un desarrollo indie apasionado e independiente. Si disfrutas la experiencia de combate y deseas apoyar nuevas actualizaciones, cazas de combate y expansiones, puedes contribuir directamente con combustible táctico:",
+    "support.kofi_region": "INTERNACIONAL // USD",
+    "support.kofi_types": "PayPal • Tarjetas • Moneda Global",
+    "support.cafecito_region": "ARGENTINA // PESOS",
+    "support.cafecito_types": "Mercado Pago • Débito • Pesos Argentinos",
+    "support.thanks": "⚡ ¡Tu apoyo directo financia servidores, mejoras del motor y contenido continuo!",
+
     "feat.sub": "// ESPECIFICACIONES DE COMBATE",
     "feat.title": "TECNOLOGÍA ARCADE 2.5D",
     "feat.f1_title": "Alabeo Volumétrico 3D",
@@ -175,6 +185,16 @@ const TRANSLATIONS = {
     "dl.trust_1": "🛡️ 100% Free of Viruses & Adware",
     "dl.trust_2": "⚡ No External Extractors Required",
     "dl.trust_3": "🎮 Keyboard, Mouse & Gamepad Support",
+
+    "nav.support": "SUPPORT",
+    "support.badge": "// COMBAT RESUPPLY & DEV SUPPORT",
+    "support.title": "CONTRIBUTE TO THE MISSION",
+    "support.desc": "Forces of Heaven is a passionate independent project. If you enjoy the combat experience and want to support future updates, new fighters, and expansions, you can support the team directly via Ko-fi or Cafecito:",
+    "support.kofi_region": "INTERNATIONAL // USD",
+    "support.kofi_types": "PayPal • Credit Cards • Global Currency",
+    "support.cafecito_region": "ARGENTINA // ARS",
+    "support.cafecito_types": "Mercado Pago • Debit Cards • Argentine Pesos",
+    "support.thanks": "⚡ Your direct support funds servers, engine enhancements, and continuous content!",
 
     "feat.sub": "// COMBAT SPECIFICATIONS",
     "feat.title": "2.5D ARCADE TECHNOLOGY",
