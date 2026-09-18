@@ -16,7 +16,7 @@
 // CONFIGURACIÓN CENTRALIZADA // ENLACE DE DESCARGA
 // ==========================================================================
 const CONFIG = {
-  DOWNLOAD_URL: "https://mega.nz/file/yLAhlSSS#igIBJYLekM7edOQ_2KxHual0LNYTdXIf5eInK3cf95w",
+  DOWNLOAD_URL: "https://mega.nz/file/rSR3XSgQ#O9N9XS3Zo1OkCP-yfTSu9r6qqNNt5UbhtN2fkb6OOok",
   FILENAME: "ForcesOfHeaven_Setup.exe",
   VERSION: "1.0.0",
   FILE_SIZE: "891 MB"
