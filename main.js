@@ -64,7 +64,7 @@ const TRANSLATIONS = {
     "support.kofi_types": "PayPal • Tarjetas • Moneda Global",
     "support.cafecito_region": "ARGENTINA // PESOS",
     "support.cafecito_types": "Mercado Pago • Débito • Pesos Argentinos",
-    "support.thanks": "⚡ ¡Tu apoyo directo financia servidores, mejoras del motor y contenido continuo!",
+    "support.thanks": "⚡ ¡Tu apoyo hace posible que este juego siga creciendo de forma independiente y libre!",
 
     "feat.sub": "// ESPECIFICACIONES DE COMBATE",
     "feat.title": "TECNOLOGÍA ARCADE 2.5D",
