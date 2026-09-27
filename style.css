@@ -2009,15 +2009,19 @@ section {
   width: 100%;
   height: 320px;
   overflow: hidden;
-  background: #000;
+  background: radial-gradient(circle at 50% 40%, rgba(0, 240, 255, 0.12) 0%, rgba(3, 7, 18, 0.95) 75%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .pm-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: center bottom;
   display: block;
+  filter: drop-shadow(0 0 16px rgba(0, 240, 255, 0.25));
 }
 
 .pm-scanline {
@@ -2621,10 +2625,26 @@ section {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid var(--border-subtle);
+    background: radial-gradient(ellipse at 50% 40%, rgba(0, 240, 255, 0.08) 0%, #060a14 75%);
   }
 
   .pm-img-frame {
-    height: 190px;
+    height: 210px;
+    max-height: 28vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.14) 0%, rgba(3, 7, 18, 0.95) 75%);
+  }
+
+  .pm-img {
+    width: 100%;
+    height: 100%;
+    max-width: 220px;
+    object-fit: contain;
+    object-position: center bottom;
+    display: block;
+    filter: drop-shadow(0 0 16px rgba(0, 240, 255, 0.28));
   }
 
   .pm-role-tag {
@@ -2756,6 +2776,15 @@ section {
     flex-direction: column;
     align-items: stretch;
     gap: 0.5rem;
+  }
+
+  .pm-img-frame {
+    height: 195px;
+    max-height: 27vh;
+  }
+
+  .pm-img {
+    max-width: 190px;
   }
 
   .link-display-box {

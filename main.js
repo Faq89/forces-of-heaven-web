@@ -16,10 +16,10 @@
 // CONFIGURACIÓN CENTRALIZADA // ENLACE DE DESCARGA
 // ==========================================================================
 const CONFIG = {
-  DOWNLOAD_URL: "https://mega.nz/file/rSR3XSgQ#O9N9XS3Zo1OkCP-yfTSu9r6qqNNt5UbhtN2fkb6OOok",
+  DOWNLOAD_URL: "https://mega.nz/file/Ofg1kYhA#VuROtFQ6vp978G7tO9FRw1D3VrKEQWUdCUWDcqZ_bg8",
   FILENAME: "ForcesOfHeaven_Setup.exe",
   VERSION: "1.0.0",
-  FILE_SIZE: "891 MB"
+  FILE_SIZE: "892 MB"
 };
 
 // ==========================================================================
@@ -133,7 +133,7 @@ const TRANSLATIONS = {
 
     "steps.title": "DESPLIEGUE EN 3 PASOS",
     "steps.s1_title": "Descarga el Instalador",
-    "steps.s1_desc": "Obtén el ejecutable único ForcesOfHeaven_Setup.exe (466 MB) sin archivos adicionales.",
+    "steps.s1_desc": "Obtén el ejecutable único ForcesOfHeaven_Setup.exe (892 MB) sin archivos adicionales.",
     "steps.s2_title": "Ejecuta la Instalación",
     "steps.s2_desc": "Haz doble clic sobre el archivo. El instalador arcade extraerá y preparará el juego con un solo clic.",
     "steps.s3_title": "¡Despega al Combate!",
@@ -1026,7 +1026,7 @@ class FlightSimulationEngine {
 
     // Calcular trayectoria
     const traj = this.calculateTrajectory();
-    
+
     // Duración calculada según distancia y viewport
     const baseDuration = (traj.distance / (window.innerWidth < 768 ? 180 : 250)) * 1000;
     const duration = Math.max(5500, baseDuration / (cfg.speedFactor || 1.0));
@@ -1172,7 +1172,7 @@ class FlightSimulationEngine {
 
       const elements = document.elementsFromPoint(e.clientX, e.clientY);
       const hitPlane = elements.find(el => el.classList && el.classList.contains("flying-aircraft"));
-      
+
       if (hitPlane) {
         const aircraftKey = hitPlane.getAttribute("data-aircraft");
         const cfg = AIRCRAFT_CONFIG[aircraftKey];
