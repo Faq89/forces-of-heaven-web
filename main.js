@@ -263,7 +263,7 @@ const TRANSLATIONS = {
 
     "steps.title": "3-STEP DEPLOYMENT",
     "steps.s1_title": "Download Installer",
-    "steps.s1_desc": "Obtain the standalone ForcesOfHeaven_Setup.exe (466 MB) with zero external downloads.",
+    "steps.s1_desc": "Obtain the standalone ForcesOfHeaven_Setup.exe (892 MB) with zero external downloads.",
     "steps.s2_title": "Run Installation",
     "steps.s2_desc": "Double-click the file. The arcade installer unpacks and preps the game in a single click.",
     "steps.s3_title": "Scramble to Combat!",
